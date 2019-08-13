@@ -11,7 +11,7 @@ export default function Confirm(props) {
         <Button
           danger
           onClick={() => {
-            props.onCancel("onCancel Callback");
+            props.tra("onCancel Callback");
           }}
         >
           Cancel

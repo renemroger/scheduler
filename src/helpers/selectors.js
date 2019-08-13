@@ -1,46 +1,40 @@
-export function getAppointmentsForDay(state, day) {
-  let appointments = [];
-  for (const d in state.days) {
-
-    if (state.days[d].name === day) {
-      appointments = state.days[d].appointments;
-    }
-  }
-  const objApp = appointments.map(app => {
-    return state.appointments[app];
+function getAppointmentsForDay(state, day) {
+  const resultDay = state.days.find(dayEntry => {
+    return dayEntry.name === day;
   });
-
-  return objApp;
+  const appointmentIdArray = resultDay ? resultDay.appointments : [];
+  const resultArray = [];
+  appointmentIdArray.forEach(appointmentId => {
+    if (state.appointments) {
+      resultArray.push(state.appointments[appointmentId]);
+    }
+  });
+  return resultArray;
 }
 
-export function getInterview(state, interview) {
-
-  let interviewId = '';
-  if (interview) {
-    interviewId = interview.interviewer;
-  }
-  if (state.interviewers[interviewId]) {
+function getInterview(state, interview) {
+  if (interview && state.interviewers) {
     return {
       student: interview.student,
-      interviewer: { ...state.interviewers[interviewId] }
-    }
+      interviewer: state.interviewers[interview.interviewer]
+    };
+  } else {
+    return null;
   }
-
-  return null;
 }
 
-export function getAppointmentsByDay(state, day) {
-  let listOfInterviewers = [];
-  for (const d in state.days) {
-    if (state.days[d].name === day) {
-      listOfInterviewers = state.days[d].interviewers;
-    }
-  }
-  const objApp = listOfInterviewers.map(interviewer => {
-    return state.interviewers[interviewer];
+function getInterviewersForDay(state, day) {
+  const resultDay = state.days.find(dayEntry => {
+    return dayEntry.name === day;
   });
-
-  return objApp;
-
-
+  const interviewersArray = resultDay ? resultDay.interviewers : [];
+  const resultArray = [];
+  interviewersArray.forEach(interviewersKey => {
+    if (state.interviewers) {
+      resultArray.push(state.interviewers[interviewersKey]);
+    }
+  });
+  return resultArray;
 }
+
+export { getAppointmentsForDay, getInterviewersForDay, getInterview };
