@@ -21,3 +21,9 @@ npm test
 ```sh
 npm run storybook
 ```
+
+![appointment](/docs/appointment.png)
+
+![app2](/docs/newApp.png)
+
+![app2](/docs/app2.png)

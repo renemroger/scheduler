@@ -45,6 +45,7 @@ export default function Application(props) {
           const interviewers = getInterviewersForDay(state, state.day);
           return (
             <Appointment
+              data-testid="appointment"
               {...appointment}
               removeInterview={removeInterview}
               key={appointment.id}

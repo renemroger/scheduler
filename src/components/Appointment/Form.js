@@ -17,6 +17,9 @@ export default function Form(props) {
     if (name === "") {
       setError("Student name cannot be blank");
       return;
+    } else if (interviewer === null) {
+      setError("Interviwer cannot be uselected");
+      return;
     }
     props.onSave(name, interviewer);
   }

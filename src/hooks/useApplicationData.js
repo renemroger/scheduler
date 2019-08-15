@@ -77,6 +77,7 @@ export default function useApplicationData() {
     const appointments = {
       ...state.appointments
     };
+
     appointments[interview].interview = null;
 
     return axios.delete(`/api/appointments/${interview}`).then(() => {

@@ -13,13 +13,6 @@ const fixtures = {
       appointments: [3, 4],
       interviewers: [3, 4],
       spots: 1
-    },
-    {
-      id: 3,
-      name: "Wednesday",
-      appointments: [3, 4],
-      interviewers: [3, 4],
-      spots: 1
     }
   ],
   appointments: {
@@ -83,8 +76,35 @@ export default {
       return Promise.resolve({
         status: 200,
         statusText: "OK",
-        data: fixtures.s
+        data: fixtures.interviewers
       });
+    }
+  }),
+  put: jest.fn(url => {
+    if (url === "/api/days/2") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
+    }
+
+    if (url === "/api/appointments/1") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
+    }
+
+    if (url === "/api/interviewers/2") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
+    }
+    return Promise.resolve({ status: 204, statusText: "No Content" });
+  }),
+  delete: jest.fn(url => {
+    if (url === "/api/days/2") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
+    }
+
+    if (url === "/api/appointments/2") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
+    }
+
+    if (url === "/api/interviewers/2") {
+      return Promise.resolve({ status: 204, statusText: "No Content" });
     }
   })
 };
